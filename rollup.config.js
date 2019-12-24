@@ -7,7 +7,8 @@ export default {
   output: {
     format: "cjs",
     dir: "dist",
-    esModule: false
+    esModule: false,
+    sourcemap: true
   },
   plugins: [
     babel()
