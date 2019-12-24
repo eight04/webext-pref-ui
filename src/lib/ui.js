@@ -76,18 +76,27 @@ export function createUI({
   function createInput(p) {
     const key = keyPrefix + p.key;
     let input;
+    const onChange = p.validate ?
+      e => {
+        try {
+          p.validate(e.target.value);
+          e.target.setCustomValidity("");
+        } catch (err) {
+          e.target.setCustomValidity(err.message || String(err));
+        }
+      } : null;
     if (p.type === "select") {
       input = (
-        <select multiple={p.multiple} class="browser-style" id={key}>
+        <select multiple={p.multiple} class="browser-style" id={key} onChange={onChange}>
           {Object.entries(p.options).map(([value, label]) =>
             <option value={value}>{label}</option>
           )}
         </select>
       );
     } else if (p.type === "textarea") {
-      input = <textarea rows="8" class="browser-style" id={key} />;
+      input = <textarea rows="8" class="browser-style" id={key} onChange={onChange} />;
     } else {
-      input = <input type={p.type} id={key} />;
+      input = <input type={p.type} id={key} onChange={onChange} />;
     }
     return (
       <div class={[`${controlPrefix}${p.type}`, "browser-style", p.className]}>

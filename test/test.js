@@ -531,6 +531,7 @@ describe("main", () => {
     assert.strictEqual(pref.get("foo"), 7);
   });
   
+  // FIXME: what does validate do when type is checkbox or radiogroup?
   it("validate", async () => {
     const pref = createPref({
       foo: "123"

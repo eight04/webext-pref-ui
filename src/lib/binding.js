@@ -49,6 +49,9 @@ function bindInputs(pref, inputs) {
   };
   
   function updatePref(key, input) {
+    if (!input.checkValidity()) {
+      return;
+    }
     if (input.type === "checkbox") {
       pref.set(key, input.checked);
       return;
