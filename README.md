@@ -220,6 +220,6 @@ For a live example, see [picker.html in Image Picka]().
 Changelog
 ---------
 
-* 0.1.0 (Aug 4, 2018)
+* 0.1.0 (Dec 25, 2019)
 
   - First release.
