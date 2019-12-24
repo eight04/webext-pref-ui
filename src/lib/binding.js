@@ -34,9 +34,10 @@ function bindInputs(pref, inputs) {
   
   for (const [key, list] of inputs.entries()) {
     for (const input of list) {
+      const evt = input.hasAttribute("realtime") ? "input" : "change";
       const onChange = () => updatePref(key, input);
-      input.addEventListener("change", onChange);
-      bounds.push(() => input.removeEventListener("change", onChange));
+      input.addEventListener(evt, onChange);
+      bounds.push(() => input.removeEventListener(evt, onChange));
     }
   }
   

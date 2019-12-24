@@ -630,4 +630,20 @@ describe("main", () => {
     });
     assert(root.querySelector(".highlight > input[value=a]"));
   });
+  
+  it("realtime", async () => {
+    const pref = createPref({
+      foo: 123
+    });
+    await pref.connect(createMemoryStorage());
+    document.body.innerHTML = `
+      <input type="range" id="pref-foo" min="0" max="200" realtime>
+    `;
+    createBinding({pref, root: document.body});
+    const input = document.querySelector("input");
+    assert.equal(input.value, "123");
+    input.value = "124";
+    input.dispatchEvent(new Event("input"));
+    assert.equal(pref.get("foo"), 124);
+  });
 });

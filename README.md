@@ -202,6 +202,7 @@ Following elements are detected:
 
   - Value will be converted into a number if the type is `number` or `range`.
   - Value will be converted into an array if the element is `select` and `multiple` is set.
+  - Pref is updated on `change` event by default. If the element has a `realtime` attribute then pref is updated on `input` event. 
 
 * `input[type=radio]` having a `name` and the `name` without `keyPrefix` is a key in `pref`.
 
