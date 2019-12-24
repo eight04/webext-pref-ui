@@ -34,7 +34,7 @@
     "coverage"
   ],
   "files": [
-    "dist"
+    "dist/**/*.js"
   ],
   "repository": "eight04/webext-pref-ui",
   "babel": {
