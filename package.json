@@ -8,8 +8,8 @@
     "jsx-dom": "^6.4.4"
   },
   "scripts": {
-    "lint": "eslint **/*.js --cache",
-    "test": "npm run lint && c8 --reporter=lcov mocha -b",
+    "lint": "eslint \"**/*.js\" --cache",
+    "test": "npm run lint && npm run build && c8 --reporter=lcov mocha -b",
     "preversion": "npm test",
     "version": "npm run build && git add .",
     "postversion": "git push --follow-tags && npm publish",
