@@ -11,7 +11,6 @@
     "lint": "eslint \"**/*.js\" --cache",
     "test": "npm run lint && npm run build && c8 --reporter=lcov mocha -b",
     "preversion": "npm test",
-    "version": "npm run build && git add .",
     "postversion": "git push --follow-tags && npm publish",
     "build": "rollup -c"
   },
