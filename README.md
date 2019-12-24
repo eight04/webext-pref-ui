@@ -221,6 +221,10 @@ For a live example, see [picker.html in Image Picka]().
 Changelog
 ---------
 
+* 0.1.1 (Dec 25, 2019)
+
+  - Add: `realtime` attribute.
+
 * 0.1.0 (Dec 25, 2019)
 
   - First release.
