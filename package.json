@@ -1,0 +1,54 @@
+{
+  "name": "webext-pref-ui",
+  "version": "0.0.0",
+  "description": "Create a simple options page and bind to webext-pref.",
+  "author": "eight04 <eight04@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsx-dom": "^6.4.4"
+  },
+  "scripts": {
+    "lint": "eslint **/*.js --cache",
+    "test": "npm run lint && c8 --reporter=lcov mocha -b",
+    "preversion": "npm test",
+    "version": "npm run build && git add .",
+    "postversion": "git push --follow-tags && npm publish",
+    "build": "rollup -c"
+  },
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-react-jsx": "^7.7.7",
+    "c8": "^7.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.17.0",
+    "jsdom": "^15.2.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^6.2.2",
+    "rollup": "^1.27.14",
+    "rollup-plugin-babel": "^4.3.3",
+    "sinon": "^8.0.1",
+    "webext-pref": "^0.6.0"
+  },
+  "eslintIgnore": [
+    "dist",
+    "coverage"
+  ],
+  "files": [
+    "dist"
+  ],
+  "repository": "eight04/webext-pref-ui",
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-transform-react-jsx",
+        {
+          "useSpread": true
+        }
+      ]
+    ]
+  },
+  "peerDependencies": {
+    "webext-pref": "0.6.x"
+  }
+}

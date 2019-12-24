@@ -1,0 +1,24 @@
+{
+	"env": {
+		"es6": true,
+		"node": true,
+    "browser": true
+	},
+	"rules": {
+		"no-use-before-define": [2, "nofunc"],
+		"semi": [2, "always"],
+    "react/jsx-uses-react": "error",   
+    "react/jsx-uses-vars": "error" 
+	},
+	"extends": [
+		"eslint:recommended"
+	],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react"]
+}
