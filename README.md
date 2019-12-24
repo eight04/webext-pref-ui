@@ -29,7 +29,9 @@ const root = createUI({
     }
   ]
 });
-/*
+```
+Output:
+```html
 <div class="webext-pref-toolbar">
   <button type="button" class="webext-pref-import browser-style">Import</button>
   <button type="button" class="webext-pref-export browser-style">Export</button>
@@ -41,14 +43,14 @@ const root = createUI({
 </div>
 <div class="webext-pref-body">
   <div class="webext-pref-text browser-style">
-    <label for="foo">A field</label>
+    <label for="pref-foo">A field</label>
     <input type="text" id="pref-foo"/>
     <p class="webext-pref-help">Some simple help text</p>
   </div>
 </div>
-*/
-
-// 2-way binding
+```
+Then bind elements to the pref:
+```js
 createBinding({
   pref,
   root
@@ -63,7 +65,7 @@ This module exports following members:
 * `createUI` - An utility function which can create a simple options page.
 * `createBinding` - bind `pref` object to elements.
 
-> **Note**: You can build your own interface without `createUI` and bind it to `pref` using `createBinding` as long as `createBinding` can detect the input element.
+> **Note**: You can build your own interface without `createUI` and bind it to `pref` using `createBinding` as long as `createBinding` can detect input elements.
 
 ### createUI
 
@@ -101,6 +103,53 @@ If `navbar` is true then build the navbar, including the scope list selection in
 
 `controlPrefix` is used to prefix components' class name. For example, by using a `webext-pref-` prefix, the class name of the import button will be `webext-pref-import` instead of `import`.
 
+#### ViewBodyItem
+
+An item has following properties:
+
+```js
+{
+  key: String,
+  label: String | Node,
+  type: String,
+  
+  children?: Array<ViewBodyItem>,
+  className?: String,
+  help?: String | Node,
+  learnMore?: String,
+  multiple?: Boolean,
+  options?: Object<value: String, label: String>,
+  validate?: value => void,
+  value?: String
+}
+```
+
+* `type` - Valid values: `text`, `number`, `checkbox`, `textarea`, `radiogroup`, `radio`, `select`, `color`, `section`.
+
+  `text`, `number`, `checkbox`, `textarea`, `select`, and `color` will create a corresponded form element.
+
+  `radiogroup` will create a container within a list of `radio` children. `radio` type must be used as `radiogroup`'s children.
+
+  `section` creates a section with a header.
+
+* `label` - The label of the item or the header of the section.
+
+* `children` - A list of child items. Only available if type is section, checkbox, radio, or radiogroup.
+
+* `className` - Extra class name which will be assigned to the container.
+
+* `help` - Additional help message.
+
+* `learnMore` - A URL that the "Learn more" link points to.
+
+* `multiple` - Only available if type is `select`. Set multiple to true to select multiple options.
+
+* `options` - Only available if type is `select`. A value -> label object map.
+
+* `validate` - A validating function. To invalidate the input, throw an error that the message is the validation message. If nothing is thrown, the input is considered valid.
+
+* `value` - Only available if type is `radio`. Assign a value to the radio item. Which will be used when the radio is checked.
+
 ### createBinding
 
 ```js
@@ -112,15 +161,15 @@ createBinding({
   controlPrefix?: String = "webext-pref-",
   alert?: async text => void,
   confirm?: async text => Boolean,
-  prompt?: async text => String | null,
+  prompt?: async text => (String | null),
   getMessage?: (key: String, params?: String | Array<String>) => localizedString?: String
   getNewScope?: () => scopeName: String
 }) => unbind: () => void
 ```
 
-Bind a `pref` object to elements and vise versa.
+Bind elements to a `pref` object.
 
-`elements` are elements that should be checked. If not provided, `createBinding` find elements from `root`:
+`elements` are elements that should be checked. If not provided, `createBinding` finds elements from `root`:
 
 ```js
 elements = root.querySelectorAll("input, textarea, select, fieldset, button")
@@ -143,11 +192,13 @@ elements = root.querySelectorAll("input, textarea, select, fieldset, button")
 
 `getNewScope` set the default scope name when adding a new scope. Default to `() => ""`.
 
+`unbind` would remove all listeners from the DOM and the pref object.
+
 #### Valid elements
 
 Following elements are detected:
 
-* `input`, `textarea`, and `select` having a `id` and the `id` without `keyPrefix` is a key in `pref`.
+* `input`, `textarea`, and `select` having an `id` and the `id` without `keyPrefix` is a key in `pref`.
 
   - Value will be converted into a number if the type is `number` or `range`.
   - Value will be converted into an array if the element is `select` and `multiple` is set.
@@ -156,13 +207,15 @@ Following elements are detected:
 
   - Update pref with the value of the input when the input is checked.
 
-* `fieldset` having a `data-bind-to` and the value is a key in `pref`.
+* `fieldset` having a `data-bind-to` attribute and the value is a key in `pref`.
 
   - The fieldset will be disabled if the pref value is falsy.
   - If `data-bind-to-value` is set, the fieldset will be disabled if the value doesn't match.
   - Note that we don't prefix `data-bind-to`.
 
 * `button` and `select` having a class name and the class name without `controlPrefix` is one of `import`, `export`, `add-scope`, `delete-scope`, or `scope-list`.
+
+For a live example, see [picker.html in Image Picka]().
 
 Changelog
 ---------
