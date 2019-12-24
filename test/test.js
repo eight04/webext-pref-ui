@@ -586,7 +586,7 @@ describe("main", () => {
     assert.equal(container.children[1].nodeName, "A");
     assert.equal(container.children[1].href, "https://example.com/");
     assert.equal(container.children[2].nodeName, "INPUT");
-    assert.equal(container.children[3].nodeName, "DIV");
+    assert.equal(container.children[3].nodeName, "P");
     assert.equal(container.children[3].textContent, "baz");
   });
   
