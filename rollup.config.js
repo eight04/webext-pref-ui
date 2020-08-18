@@ -13,6 +13,5 @@ export default {
   plugins: [
     babel()
   ],
-  external: Object.keys(require("./package.json").dependencies),
-  preserveModules: true
+  external: Object.keys(require("./package.json").dependencies)
 };
