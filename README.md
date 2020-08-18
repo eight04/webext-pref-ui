@@ -221,6 +221,10 @@ For a live example, see [picker.html in Image Picka]().
 Changelog
 ---------
 
+* 0.2.1 (Aug 19, 2020)
+
+  - Fix: `getMessage` can't recognize params.
+
 * 0.2.0 (Aug 19, 2020)
 
   - Fix: typo that creates invalid id for radio.
