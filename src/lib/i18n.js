@@ -12,7 +12,7 @@ function messageGetter({
     if (!Array.isArray(params)) {
       params = [params];
     }
-    return defaultMessage.replace(/\$(d+)/g, (m, n) => params[n - 1]);
+    return defaultMessage.replace(/\$(\d+)/g, (m, n) => params[n - 1]);
   };
 }
 

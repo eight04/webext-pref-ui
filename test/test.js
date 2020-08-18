@@ -185,6 +185,7 @@ describe("main", () => {
     deleteButton.click();
     await delay();
     assert.deepStrictEqual(pref.getScopeList(), ["global", "foo"]);
+    assert.equal(global.confirm.lastCall.args[0], "Delete scope bar?");
     
     confirmResult = false;
     deleteButton.click();
