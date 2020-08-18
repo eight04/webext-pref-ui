@@ -139,7 +139,7 @@ export function createUI({
   }
 
   function createCheckbox(p) {
-    const id = p.parentKey ? `${keyPrefix}${p.parentKey}-{p.value}` : keyPrefix + p.key;
+    const id = p.parentKey ? `${keyPrefix}${p.parentKey}-${p.value}` : keyPrefix + p.key;
     return (
       <div class={[`${controlPrefix}${p.type}`, "browser-style", p.className]}>
         <input
