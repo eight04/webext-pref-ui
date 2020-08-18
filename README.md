@@ -221,6 +221,11 @@ For a live example, see [picker.html in Image Picka]().
 Changelog
 ---------
 
+* 0.2.0 (Aug 19, 2020)
+
+  - Fix: typo that creates invalid id for radio.
+  - Change: bundle to a single file. 
+
 * 0.1.1 (Dec 25, 2019)
 
   - Add: `realtime` attribute.
