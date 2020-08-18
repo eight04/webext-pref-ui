@@ -8,7 +8,8 @@
 		"no-use-before-define": [2, "nofunc"],
 		"semi": [2, "always"],
     "react/jsx-uses-react": "error",   
-    "react/jsx-uses-vars": "error" 
+    "react/jsx-uses-vars": "error" ,
+    "no-ambiguous/curly": "error"
 	},
 	"extends": [
 		"eslint:recommended"
@@ -20,5 +21,5 @@
       "jsx": true
     }
   },
-  "plugins": ["react"]
+  "plugins": ["react", "no-ambiguous"]
 }
